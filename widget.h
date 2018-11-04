@@ -22,9 +22,10 @@ private slots:
     void on_pb100_clicked();
     void on_pb50_clicked();
     void on_pb10_clicked();
-    void on_coffee_clicked();
-    void on_tea_clicked();
-    void on_cola_cliced();
+    void on_pbCoffee_clicked();
+    void on_pb_Tea_clicked();
+    void on_pbCola_clicked();
+    void on_pbReset_clicked();
 
 
 private:
