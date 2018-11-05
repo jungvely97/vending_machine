@@ -16,6 +16,7 @@ public:
     ~Widget();
     int money_{0};
     void button();
+    void sum(int num);
 
 private slots:
     void on_pb500_clicked();

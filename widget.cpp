@@ -17,63 +17,55 @@ Widget::~Widget()
 
 void Widget::on_pb500_clicked()
 {
-    this->money_ += 500;
-    ui->lcdNumber->display(this->money_);
-    button();
+    sum(500);
 }
 void Widget::on_pb100_clicked()
 {
-    this->money_ += 100;
-    ui->lcdNumber->display(this->money_);
-    button();
+    sum(100);
 }
 void Widget::on_pb50_clicked(){
-    this->money_ += 50;
-    ui->lcdNumber->display(this->money_);
-    button();
+    sum(50);
 }
 void Widget::on_pb10_clicked(){
-    this->money_ += 10;
-    ui->lcdNumber->display(this->money_);
-    button();
+    sum(10);
 }
 void Widget::on_pbCoffee_clicked(){
-    this->money_ -= 100;
-    ui->lcdNumber->display(this->money_);
-    button();
+    sum(-100);
 }
 void Widget::on_pb_Tea_clicked(){
-    this->money_ -= 150;
-    ui->lcdNumber->display(this->money_);
-    button();
+    sum(-150);
 }
 void Widget::on_pbCola_clicked(){
-    this->money_ -=200;
-    ui->lcdNumber->display(this->money_);
-    button();
+    sum(-200);
 }
 
 void Widget::button(){
-    if(this->money_ >= 200) ui->pbCola->setEnabled(true);
+    if(money_ >= 200) ui->pbCola->setEnabled(true);
     else ui->pbCola->setEnabled(0);
-    if(this->money_ >= 150) ui->pb_Tea->setEnabled(true);
+    if(money_ >= 150) ui->pb_Tea->setEnabled(true);
     else ui->pb_Tea->setEnabled(0);
-    if(this->money_ >= 100) ui->pbCoffee->setEnabled(true);
+    if(money_ >= 100) ui->pbCoffee->setEnabled(true);
     else ui->pbCoffee->setEnabled(0);
+}
+
+void Widget::sum(int num){
+    money_ += num;
+    ui->lcdNumber->display(this->money_);
+    button();
 }
 
 void Widget::on_pbReset_clicked(){
     QString str;
     int num500, num100, num50, num10;
 
-    num500 = this->money_ / 500;
-    this->money_ %= 500;
-    num100 = this->money_ / 100;
-    this->money_ %= 100;
-    num50 = this->money_ / 50;
-    this->money_ %= 50;
-    num10 = this->money_ / 10;
-    this->money_ %= 10;
+    if(money_ > 500) num500 = money_ / 500;
+    money_ %= 500;
+    if(money_ < 500)num100 = money_ / 100;
+    money_ %= 100;
+    if(money_ < 100)num50 = money_ / 50;
+    money_ %= 50;
+    if(money_ < 50)num10 = money_ / 10;
+    money_ %= 10;
 
     str = QString("500: %1, 100: %2, 50: %3, 10: %4").arg(num500).arg(num100).arg(num50).arg(num10);
     QMessageBox::information(this, "show", str);
