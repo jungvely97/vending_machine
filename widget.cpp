@@ -1,6 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include <QMessageBox>
+#include <string.h>
 
 
 Widget::Widget(QWidget *parent) :
@@ -40,12 +41,9 @@ void Widget::on_pbCola_clicked(){
 }
 
 void Widget::button(){
-    if(money_ >= 200) ui->pbCola->setEnabled(true);
-    else ui->pbCola->setEnabled(0);
-    if(money_ >= 150) ui->pb_Tea->setEnabled(true);
-    else ui->pb_Tea->setEnabled(0);
-    if(money_ >= 100) ui->pbCoffee->setEnabled(true);
-    else ui->pbCoffee->setEnabled(0);
+    ui->pbCola->setEnabled(money_ >= 200);
+    ui->pb_Tea->setEnabled(money_ >= 150);
+    ui->pbCoffee->setEnabled(money_ >= 100);
 }
 
 void Widget::sum(int num){
@@ -56,7 +54,7 @@ void Widget::sum(int num){
 
 void Widget::on_pbReset_clicked(){
     QString str;
-    int num500, num100, num50, num10;
+    int num500=0, num100 = 0, num50 = 0, num10 = 0;
 
     if(money_ > 500) num500 = money_ / 500;
     money_ %= 500;
